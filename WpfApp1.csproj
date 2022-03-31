@@ -58,6 +58,7 @@
     <Compile Include="Resources\Document.cs" />
     <Compile Include="Resources\ListFunctions.cs" />
     <Compile Include="Resources\OtchetRecord.cs" />
+    <Compile Include="Resources\OtchetView.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

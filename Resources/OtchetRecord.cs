@@ -6,26 +6,18 @@ using System.Threading.Tasks;
 
 namespace WpfApp1.Resources
 {
-    internal class OtchetRecord
+    public class OtchetRecord
     {
 
-        private Guid id;
+        private Guid id = Guid.NewGuid();
         public Guid GetGuid()
         { return id; }
-        public void SetGuid()
-        { id = Guid.NewGuid(); }
-
 
         private string ispolnitel;
-
         public string GetIspolnitel()
-        {
-            return ispolnitel;
-        }
+        { return ispolnitel; }
         public void SetIspolnitel(string value)
-        {
-            ispolnitel = value;
-        }
+        { ispolnitel = value; }
 
         private int countRKK;
         public int GetCountRKK()
@@ -44,6 +36,12 @@ namespace WpfApp1.Resources
         { return countRKK_OBR; }
         public void SetCountRKK_OBR()
         { countRKK_OBR = countRKK_OBR + 1; }
+
+        private int exFile;
+        public int GetExFile()
+        { return exFile; }
+        public void SetExFile(int value)
+        { exFile = value; }
     }
 
 }

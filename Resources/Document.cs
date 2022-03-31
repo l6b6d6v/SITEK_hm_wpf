@@ -9,11 +9,10 @@ namespace WpfApp1.Resources
 
     internal class Document
     {
-        private Guid id;
+        private Guid id = Guid.NewGuid();
         public Guid GetGuid()
         { return id; }
-        public void SetGuid()
-        { id = Guid.NewGuid(); }
+
 
         private string ruk;
         public string GetRuk()
@@ -36,6 +35,13 @@ namespace WpfApp1.Resources
         }
         public void SetOtv(string value)
         { otv = value; }
+
+        private int exFile;
+
+        public int GetExFile() 
+        { return exFile; }
+        public void SetExFile(int value)
+        { exFile = value; }
     }
 
 }
