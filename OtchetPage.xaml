@@ -19,16 +19,16 @@
         <TextBlock x:Name="CountDocs" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="73,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499"><Run Text="Не использовано в срок "/><Run Text="%колво_документов%"/><Run Text=" документов, из них"/><Run Text=":"/><LineBreak/><Run/><LineBreak/><Run Text=" - количество неисполненных входящих документов"/><Run Text=": %колво_ркк%"/><Run Text=";"/><LineBreak/><Run/><LineBreak/><Run Text=" - "/><Run Text="количество неисполненных "/><Run Text="письменных обращений граждан: %"/><Run Language="ru-ru" Text="колво_обр"/><Run Text="%;"/></TextBlock>
         <TextBlock x:Name="SortBy" Grid.ColumnSpan="2" Margin="87,214,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="459" Height="32" VerticalAlignment="Top"><Run Text="Сортировка:"/><Run Text=" "/><Run Language="ru-ru" Text="%тип сортировки%"/></TextBlock>
         <DataGrid x:Name="DG" Grid.ColumnSpan="2" Margin="73,277,73,0" Height="400 " VerticalAlignment="Top" Background="White" BorderBrush="Black" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding dg_nn}" Width="*"  IsReadOnly="True" Header="№ п.п."/>
-                <DataGridTextColumn Binding="{Binding dg_ispolnitel}" Width="2*" IsReadOnly="True" Header="Ответственный исполнитель"/>
-                <DataGridTextColumn Binding="{Binding dg_countRKK}" Width="2*" IsReadOnly="True" Header="Количество неисполненных входящих документов"/>
-                <DataGridTextColumn Binding="{Binding dg_countOBR}" Width="2*" IsReadOnly="True" Header="Количество неисполненных письменных обращений граждан"/>
-                <DataGridTextColumn Binding="{Binding dg_countRKK_OBR}" Width="2*" IsReadOnly="True" Header="Общее количество документов и обращений"/>
+            <DataGrid.Columns >
+                <DataGridTextColumn x:Name="dgname_nn" Binding="{Binding dg_nn}" Width="*"  IsReadOnly="True" Header="№ п.п."/>
+                <DataGridTextColumn x:Name="dgname_ispolnitel" Binding="{Binding dg_ispolnitel}" Width="2*" IsReadOnly="True" Header="Ответственный исполнитель"/>
+                <DataGridTextColumn x:Name="dgname_countRKK" Binding="{Binding dg_countRKK}" Width="2*" IsReadOnly="True" Header="Количество неисполненных входящих документов"/>
+                <DataGridTextColumn x:Name="dgname_countOBR" Binding="{Binding dg_countOBR}" Width="2*" IsReadOnly="True" Header="Количество неисполненных письменных обращений граждан"/>
+                <DataGridTextColumn x:Name="dgname_countRKK_OBR" Binding="{Binding dg_countRKK_OBR}" Width="2*" IsReadOnly="True" Header="Общее количество документов и обращений"/>
             </DataGrid.Columns>
             <DataGrid.ColumnHeaderStyle >
                 <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
-                    <Setter Property="FontWeight"  Value="Bold" />
+					<Setter Property="FontWeight"  Value="Bold" />
                     <Setter Property="Height"  Value="70" />
                     <Setter Property="Background" Value="White" />
                     <Setter Property="Foreground" Value="Black" />
@@ -36,7 +36,8 @@
                     <Setter Property="BorderThickness" Value="1 1 1 1"/>
                     <Setter Property="Margin" Value="-1,-1,-1, 0" />
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                </Style>
+				</Style>
+
             </DataGrid.ColumnHeaderStyle>
         </DataGrid>
         <TextBlock x:Name="CreationDate" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="73,0,0,48" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="292" Height="18"><Run Text="Дата сос"/><Run Text="тавления"/><Run Text=" справки"/><Run Language="ru-ru" Text=": %текущая_дата%"/><LineBreak/><Run/></TextBlock>

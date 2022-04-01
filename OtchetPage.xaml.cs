@@ -40,20 +40,22 @@ namespace WpfApp1
                     dg_ispolnitel = list[i].GetIspolnitel(),
                     dg_countRKK = list[i].GetCountRKK(),
                     dg_countOBR = list[i].GetCountOBR(),
-                    dg_countRKK_OBR = list[i].GetCountRKK_OBR() });
+                    dg_countRKK_OBR = list[i].GetCountRKK_OBR() 
+                });
             }
-            
-
 
             DG.ItemsSource = coll;
-
             
-
+            dgname_nn.Header = "№ п.п.";
+            dgname_ispolnitel.Header = "Ответственный\nисполнитель";
+            dgname_countRKK.Header = "Количество\nнеисполненных\nвходящих документов";
+            dgname_countOBR.Header = "Количество\nнеисполненных\nписьменных\nобращений граждан";
+            dgname_countRKK_OBR.Header = "Общее количество\nдокументов и\nобращений";
 
             CountDocs.Text =
-    "Не исполнено в срок " + (rkkDocCount + obrDocCount) + " документов, из них:\n\n" + 
-    "- количество неисполненных входящих документов: " + rkkDocCount + ";\n\n" + 
-    "- количество неисполненных письменных обращений граждан: " + obrDocCount + ";";
+            "Не исполнено в срок " + (rkkDocCount + obrDocCount) + " документов, из них:\n\n" + 
+            "- количество неисполненных входящих документов: " + rkkDocCount + ";\n\n" + 
+            "- количество неисполненных письменных обращений граждан: " + obrDocCount + ";";
 
             SortBy.Text = "Сортировка по: " + sortBy;
             CreationDate.Text = "Дата составления справки: " + DateTime.Now.ToShortDateString();
@@ -63,34 +65,25 @@ namespace WpfApp1
         private void Information_Click(object sender, RoutedEventArgs e)
         {
 
-            char pathSplitter = '\\';
+            char[] pathSplitter = {'\\', '/'};
 
-
+            if (pathRKK == null)
+                pathRKK = "%файл отсутствует%";
+            if (pathOBR == null)
+                pathOBR = "%файл отсутствует%";
             string namePathRKK = pathRKK.Split(pathSplitter)[pathRKK.Split(pathSplitter).Length - 1];
             string namePathOBR = pathOBR.Split(pathSplitter)[pathOBR.Split(pathSplitter).Length - 1];
-            //Не работает namePathRKK namePathOBR
             MessageBox.Show(
-                "Время считывания файла \"" + namePathRKK + "\": " + WatchRKK.Elapsed + "\n" + 
-                "Время считывания файла \"" + namePathOBR + "\": " + WatchOBR.Elapsed + "\n" +
                 "Неисполненные входящие документы: " + namePathRKK + "\n" +
-                "Неисполненные письменные обращения граждан: " + namePathOBR
+                "Время считывания файла \"" + namePathRKK + "\": " + WatchRKK.Elapsed + "\n" + 
+                "Неисполненные письменные обращения граждан: " + namePathOBR + "\n" +
+                "Время считывания файла \"" + namePathOBR + "\": " + WatchOBR.Elapsed
                 );
 
         }
 
-        private void printDG()
-        {
 
-            //for (int i = 0; i < OtchetForAddedElements.Count; i++)
-            //    writer.WriteLine($"{i,-10}{OtchetForAddedElements[i].GetIspolnitel(),-25}{OtchetForAddedElements[i].GetCountRKK(),-25}" +
-            //        $"{OtchetForAddedElements[i].GetCountOBR(),-25}{OtchetForAddedElements[i].GetCountRKK_OBR(),-25}");
-
-            string[] DGstring = new string[coll.Count];
-            for (int i = 0; i < coll.Count; i++)
-                DGstring[i] = $"{i,-10}{coll[i].dg_ispolnitel,-25}{coll[i].dg_countRKK,-25}" + $"{coll[i].dg_countOBR,-25}{coll[i].dg_countRKK_OBR,-25}";
         
-            
-        }
         private void PrintToFile_Click(object sender, RoutedEventArgs e)
         {
             string[] arr = { Head.Text, CountDocs.Text, SortBy.Text, CreationDate.Text };
@@ -106,9 +99,7 @@ namespace WpfApp1
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text file (*.txt)|*.txt";
             if (saveFileDialog.ShowDialog() == true)
-            {
                 File.WriteAllLines(saveFileDialog.FileName, DGstring);
-            }
         }
     }
 }

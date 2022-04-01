@@ -20,7 +20,7 @@
         <Button x:Name="RkkSort" Content="По количеству РКК" Margin="45,0,0,81" Click="SortButtonClick" Grid.Row="1" HorizontalAlignment="Left" Width="279" Height="63" VerticalAlignment="Bottom"/>
         <Button x:Name="ObrSort" Content="По количеству обращений" Margin="0,0,81,217" Click="SortButtonClick" Grid.Row="1" HorizontalAlignment="Right" Width="279" Height="63" VerticalAlignment="Bottom"/>
         <Button x:Name="AllSort" Content="По общему количеству документов" Margin="0,0,81,81" Click="SortButtonClick" Grid.Row="1" HorizontalAlignment="Right" Width="279" Height="63" VerticalAlignment="Bottom"/>
-        <TextBox AcceptsReturn="True" HorizontalScrollBarVisibility="Visible" x:Name="buttonReadRKK" Margin="25,56,0,0" TextWrapping="NoWrap" Text="C:\Users\LEBEDEV\Desktop\СИТЕК\Тестовое задание - РКК.txt" Grid.RowSpan="2" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="178"/>
-        <TextBox AcceptsReturn="True" HorizontalScrollBarVisibility="Visible" x:Name="buttonReadOBR" Margin="0,56,152,0" TextWrapping="NoWrap" Text="C:\Users\LEBEDEV\Desktop\СИТЕК\Тестовое задание - Обращения.txt" Grid.RowSpan="2" HorizontalAlignment="Right" Width="178" Height="35" VerticalAlignment="Top"/>
+        <TextBox AcceptsReturn="True" HorizontalScrollBarVisibility="Visible" x:Name="buttonReadRKK" Margin="25,56,0,0" TextWrapping="NoWrap" Text="" Grid.RowSpan="2" Height="35" VerticalAlignment="Top" HorizontalAlignment="Left" Width="178"/>
+        <TextBox AcceptsReturn="True" HorizontalScrollBarVisibility="Visible" x:Name="buttonReadOBR" Margin="0,56,152,0" TextWrapping="NoWrap" Text="" Grid.RowSpan="2" HorizontalAlignment="Right" Width="178" Height="35" VerticalAlignment="Top"/>
     </Grid>
 </Window>
