@@ -1,4 +1,11 @@
-﻿using System;
+﻿using Microsoft.Win32;
+
+using System.Collections;
+using System.Linq;
+using System.Collections.ObjectModel;
+using System.Data;
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
@@ -27,6 +34,9 @@ namespace WpfApp1
         public static string pathRKK;
         public static string pathOBR;
         public static string sortBy;
+        
+        private List<OtchetRecord> OtchetForAddedElements = new List<OtchetRecord>();
+        IEnumerable<OtchetRecord> query;
         private void SortButtonClick(object sender, RoutedEventArgs e)
         {
             Button Sortbtn = (Button)sender;
@@ -36,26 +46,34 @@ namespace WpfApp1
                 {
                     case "По фамилии ответственного исполнителя":
                         //Сортировка по фамилии ответственного исполнителя
-                        OtchetForAddedElements.Sort((OtchetRecord x, OtchetRecord y) => { return x.GetIspolnitel().CompareTo(y.GetIspolnitel()); });
-                        break;
+                        query = from OtchetRecord in OtchetForAddedElements  
+                            orderby OtchetRecord.GetIspolnitel() ascending
+                            select OtchetRecord;  
+                    break;
                     case "По количеству РКК":
                         //Сортировка по количеству РКК (в случае равенства – по количеству обращений);
-                        OtchetForAddedElements.Sort((OtchetRecord x, OtchetRecord y) => { return y.GetCountRKK().CompareTo(x.GetCountRKK()); });
+                        query = from OtchetRecord in OtchetForAddedElements  
+                            orderby OtchetRecord.GetCountRKK() descending, OtchetRecord.GetCountOBR() descending
+                            select OtchetRecord;  
                         break;
                     case "По количеству обращений":
                         //Сортировка по количеству обращений (в случае равенства – по количеству РКК);
-                        OtchetForAddedElements.Sort((OtchetRecord x, OtchetRecord y) => { return y.GetCountOBR().CompareTo(x.GetCountOBR()); });
+                        query = from OtchetRecord in OtchetForAddedElements  
+                            orderby OtchetRecord.GetCountOBR() descending, OtchetRecord.GetCountRKK() descending
+                            select OtchetRecord;  
                         break;
                     case "По общему количеству документов":
                         //Сортировка по общему количеству документов (в случае равенства – по количеству РКК)
-                        OtchetForAddedElements.Sort((OtchetRecord x, OtchetRecord y) => { return y.GetCountRKK_OBR().CompareTo(x.GetCountRKK_OBR()); });
+                        query = from OtchetRecord in OtchetForAddedElements  
+                            orderby OtchetRecord.GetCountRKK_OBR() descending, OtchetRecord.GetCountRKK() descending
+                            select OtchetRecord;  
                         break;
                 }
 
             // открытие нового окна
             OtchetPage Page = new OtchetPage();
             Page.Owner = this;
-            SetOtchet(OtchetForAddedElements);
+            SetOtchet(query.ToList());
             Console.WriteLine("SortButtonClick(" + measurement + ") = Clicked");
             Page.ShowDialog();
         }
@@ -73,9 +91,13 @@ namespace WpfApp1
                 OtchetToPage.Add( record);
         }
 
-        private List<OtchetRecord> OtchetForAddedElements = new List<OtchetRecord>();
         private void LoadFileRKKButtonClick(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text file (*.txt)|*.txt";
+			if(openFileDialog.ShowDialog() == true)
+				buttonReadRKK.Text = openFileDialog.FileName;
+
             pathRKK = buttonReadRKK.Text;
             if (File.Exists(pathRKK) == true)
             {
@@ -99,6 +121,10 @@ namespace WpfApp1
 
         private void LoadFileOBRButtonClick(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Text file (*.txt)|*.txt";
+			if(openFileDialog.ShowDialog() == true)
+				buttonReadOBR.Text = openFileDialog.FileName;
             pathOBR = buttonReadOBR.Text;
             if (File.Exists(pathOBR) == true)
             {

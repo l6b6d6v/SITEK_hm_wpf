@@ -6,43 +6,73 @@
         mc:Ignorable="d"
         Title="OtchetPage" Height="1000" Width="800" Loaded="Window_Loaded"
         >
-    <Grid Margin="0,0,0,-6">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="851*"/>
-            <RowDefinition Height="39*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="Head" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1" TextAlignment="Center" Text="Справка о неисполненных документах и обращениях граждан"></TextBlock>
-        <TextBlock x:Name="CountDocs" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="73,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499"><Run Text="Не использовано в срок "/><Run Text="%колво_документов%"/><Run Text=" документов, из них"/><Run Text=":"/><LineBreak/><Run/><LineBreak/><Run Text=" - количество неисполненных входящих документов"/><Run Text=": %колво_ркк%"/><Run Text=";"/><LineBreak/><Run/><LineBreak/><Run Text=" - "/><Run Text="количество неисполненных "/><Run Text="письменных обращений граждан: %"/><Run Language="ru-ru" Text="колво_обр"/><Run Text="%;"/></TextBlock>
-        <TextBlock x:Name="SortBy" Grid.ColumnSpan="2" Margin="87,214,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="459" Height="32" VerticalAlignment="Top"><Run Text="Сортировка:"/><Run Text=" "/><Run Language="ru-ru" Text="%тип сортировки%"/></TextBlock>
-        <DataGrid x:Name="DG" Grid.ColumnSpan="2" Margin="73,277,73,0" Height="400 " VerticalAlignment="Top" Background="White" BorderBrush="Black" AutoGenerateColumns="False">
-            <DataGrid.Columns >
-                <DataGridTextColumn x:Name="dgname_nn" Binding="{Binding dg_nn}" Width="*"  IsReadOnly="True" Header="№ п.п."/>
-                <DataGridTextColumn x:Name="dgname_ispolnitel" Binding="{Binding dg_ispolnitel}" Width="2*" IsReadOnly="True" Header="Ответственный исполнитель"/>
-                <DataGridTextColumn x:Name="dgname_countRKK" Binding="{Binding dg_countRKK}" Width="2*" IsReadOnly="True" Header="Количество неисполненных входящих документов"/>
-                <DataGridTextColumn x:Name="dgname_countOBR" Binding="{Binding dg_countOBR}" Width="2*" IsReadOnly="True" Header="Количество неисполненных письменных обращений граждан"/>
-                <DataGridTextColumn x:Name="dgname_countRKK_OBR" Binding="{Binding dg_countRKK_OBR}" Width="2*" IsReadOnly="True" Header="Общее количество документов и обращений"/>
-            </DataGrid.Columns>
-            <DataGrid.ColumnHeaderStyle >
-                <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
+	<Grid Margin="0,0,0,-6">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="851*"/>
+			<RowDefinition Height="39*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0*"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<TextBlock x:Name="Head" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="16" FontWeight="Bold" Grid.Column="1" TextAlignment="Center" Text="Справка о неисполненных документах и обращениях граждан"></TextBlock>
+		<TextBlock x:Name="CountDocs" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="73,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="499">
+			<Run Text="Не использовано в срок "/>
+			<Run Text="%колво_документов%"/>
+			<Run Text=" документов, из них"/>
+			<Run Text=":"/>
+			<LineBreak/>
+			<Run/>
+			<LineBreak/>
+			<Run Text=" - количество неисполненных входящих документов"/>
+			<Run Text=": %колво_ркк%"/>
+			<Run Text=";"/>
+			<LineBreak/>
+			<Run/>
+			<LineBreak/>
+			<Run Text=" - "/>
+			<Run Text="количество неисполненных "/>
+			<Run Text="письменных обращений граждан: %"/>
+			<Run Language="ru-ru" Text="колво_обр"/>
+			<Run Text="%;"/>
+		</TextBlock>
+		<TextBlock x:Name="SortBy" Grid.ColumnSpan="2" Margin="87,214,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="459" Height="32" VerticalAlignment="Top">
+			<Run Text="Сортировка:"/>
+			<Run Text=" "/>
+			<Run Language="ru-ru" Text="%тип сортировки%"/>
+		</TextBlock>
+		<DataGrid x:Name="DG" Grid.ColumnSpan="2" Margin="73,277,73,0" Height="400 " VerticalAlignment="Top" Background="White" BorderBrush="Black" AutoGenerateColumns="False">
+			<DataGrid.Columns >
+				<DataGridTextColumn x:Name="dgname_nn" Binding="{Binding dg_nn}" Width="*"  IsReadOnly="True" Header="№ п.п."/>
+				<DataGridTextColumn x:Name="dgname_ispolnitel" Binding="{Binding dg_ispolnitel}" Width="2*" IsReadOnly="True" Header="Ответственный исполнитель"/>
+				<DataGridTextColumn x:Name="dgname_countRKK" Binding="{Binding dg_countRKK}" Width="2*" IsReadOnly="True" Header="Количество неисполненных входящих документов"/>
+				<DataGridTextColumn x:Name="dgname_countOBR" Binding="{Binding dg_countOBR}" Width="2*" IsReadOnly="True" Header="Количество неисполненных письменных обращений граждан"/>
+				<DataGridTextColumn x:Name="dgname_countRKK_OBR" Binding="{Binding dg_countRKK_OBR}" Width="2*" IsReadOnly="True" Header="Общее количество документов и обращений"/>
+			</DataGrid.Columns>
+			<DataGrid.ColumnHeaderStyle >
+				<Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}" >
 					<Setter Property="FontWeight"  Value="Bold" />
-                    <Setter Property="Height"  Value="70" />
-                    <Setter Property="Background" Value="White" />
-                    <Setter Property="Foreground" Value="Black" />
-                    <Setter Property="BorderBrush" Value="Black"/>
-                    <Setter Property="BorderThickness" Value="1 1 1 1"/>
-                    <Setter Property="Margin" Value="-1,-1,-1, 0" />
-                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+					<Setter Property="Height"  Value="70" />
+					<Setter Property="Background" Value="White" />
+					<Setter Property="Foreground" Value="Black" />
+					<Setter Property="BorderBrush" Value="Black"/>
+					<Setter Property="BorderThickness" Value="1 1 1 1"/>
+					<Setter Property="Margin" Value="-1,-1,-1, 0" />
+					<Setter Property="HorizontalContentAlignment" Value="Center"/>
 				</Style>
 
-            </DataGrid.ColumnHeaderStyle>
-        </DataGrid>
-        <TextBlock x:Name="CreationDate" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="73,0,0,48" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="292" Height="18"><Run Text="Дата сос"/><Run Text="тавления"/><Run Text=" справки"/><Run Language="ru-ru" Text=": %текущая_дата%"/><LineBreak/><Run/></TextBlock>
-        <Button x:Name="PrintToFile"  Content="Печать" Grid.ColumnSpan="2" Margin="0,0,73,46" HorizontalAlignment="Right" Width="98" Height="20" VerticalAlignment="Bottom" Click="PrintToFile_Click"/>
-        <Button x:Name="Information" Content="Информация" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,215,46" Width="98" Click="Information_Click" Height="20" VerticalAlignment="Bottom"/>
+			</DataGrid.ColumnHeaderStyle>
+		</DataGrid>
+		<TextBlock x:Name="CreationDate" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="73,0,0,48" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="292" Height="18">
+			<Run Text="Дата сос"/>
+			<Run Text="тавления"/>
+			<Run Text=" справки"/>
+			<Run Language="ru-ru" Text=": %текущая_дата%"/>
+			<LineBreak/>
+			<Run/>
+		</TextBlock>
+		<Button x:Name="PrintToFile"  Content="Печать" Grid.ColumnSpan="2" Margin="0,0,73,46" HorizontalAlignment="Right" Width="98" Height="20" VerticalAlignment="Bottom" Click="PrintToFile_Click"/>
+		<Button x:Name="Information" Content="Информация" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,215,46" Width="98" Click="Information_Click" Height="20" VerticalAlignment="Bottom"/>
 
-    </Grid>
+	</Grid>
 </Window>
